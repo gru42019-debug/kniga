@@ -1,21 +1,3 @@
-
-
-import streamlit as st
-if "books" not in st.session_state:
-  st.session_state.books = []
-
-title = st.text_input("Заглавие")
-author = st.text_input("Автор")
-
-if st.button("Добави книга"):
-  book = {
-    "title":title,
-    "author":author
-  }
-  st.session_state.books.append(book)
-  st.success("Книгата е добавена!")
-  st.write("### Списък с книги:")
-  st.write(st.session_state.books)
 import streamlit as st
 
 st.title("Приложение")
@@ -23,6 +5,10 @@ st.title("Приложение")
 # Създаваме масив (списък), ако още не съществува
 if "books" not in st.session_state:
     st.session_state.books = []
+
+# ============================
+# ➕ Добавяне на книга
+# ============================
 
 st.header("➕ Добави книга")
 
@@ -40,6 +26,10 @@ if st.button("Добави книгата"):
     st.session_state.books.append(book)
     st.success("Книгата е добавена!")
 
+# ============================
+# 📚 Покажи всички книги
+# ============================
+
 if st.button("Покажи всички книги"):
 
     if len(st.session_state.books) == 0:
@@ -51,7 +41,9 @@ if st.button("Покажи всички книги"):
             st.write("Цена:", book["price"])
             st.write("--------------------")
 
-
+# ============================
+# 🔍 Търсене по автор
+# ============================
 
 st.header("Търсене по автор")
 
@@ -68,4 +60,3 @@ if st.button("Търси по автор"):
 
     if found == False:
         st.write("Няма намерени книги от този автор.")
-
